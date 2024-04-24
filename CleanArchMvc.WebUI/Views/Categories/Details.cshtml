@@ -1,0 +1,23 @@
+﻿@model CleanArchMvc.Application.DTOs.CategoryDTO
+
+<h3>Category Details</h3>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-md-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+
+    <div class="form-group">
+        <a asp-action="Edit" asp-route-id="@Model.Id" title="Edit" class="btn btn-primary mr-2">
+            Edit
+        </a>
+
+        <a asp-action="Index" class="btn btn-info">Back to list</a>
+    </div>
+</div>

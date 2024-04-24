@@ -1,0 +1,93 @@
+﻿@model IEnumerable<CleanArchMvc.Application.DTOs.ProductDTO>
+
+@{
+    ViewData["Title"] = "Products Management";
+}
+
+<style>
+    .modal-lg {
+        max-width: 80%;
+    }
+</style>
+
+<div>
+    <h2>@ViewData["Title"]</h2>
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <div class="pull-left">
+                <a asp-action="Create" class="btn btn-primary">
+                    <span tutle="Register New" class="fas fa-plus"></span> Register New
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="panel panel-default">
+    <table class="table table-striped">
+        <tread>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Stock)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category.Name)
+                </th>
+                <th class="d-flex justify-content-center">Actions</th>
+            </tr>
+        </tread>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Stock)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    </td>
+
+                    <td>
+                        <div class="d-flex justify-content-center">
+                            <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" class="btn btn-warning mr-2">
+                                <span class="fas fa-edit" style="font-size:12px;"></span>
+                            </a>
+
+                            <a asp-action="Details" asp-route-id="@item.Id" title="Details" class="btn btn-primary mr-2">
+                                <span class="fas fa-eye" style="font-size:12px;"></span>
+                            </a>
+
+                            <a asp-action="Delete" asp-route-id="@item.Id" title="Delete" class="btn btn-danger">
+                                <span class="fas fa-trash-alt" style="font-size:12px;"></span>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
