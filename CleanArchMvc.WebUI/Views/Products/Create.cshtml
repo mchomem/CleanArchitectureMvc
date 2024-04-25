@@ -59,8 +59,10 @@
         <div class="form-group">
             <label asp-for="Image" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <label>Select a imagem</label>
-                <input type="file" name="file" class="form-control" />
+                <div class="custom-file">
+                    <input type="file" name="file" class="custom-file-input" />
+                    <label class="custom-file-label">Select a imagem</label>
+                </div>
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
         </div>
