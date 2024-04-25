@@ -28,10 +28,13 @@
 </div>
 
 <div class="panel panel-default">
-    <table class="table">
+    <table id="tableCategories" class="table">
         <tread>
             <tr style="background-color:silver;">
-                <th style="width: 80%;">
+                <th style="display:none;">
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
                 <th class="text-center" style="width: 20%;">
@@ -42,7 +45,10 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
+                <tr title="Double click to edit">
+                    <td style="display:none;">
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
                     <td class="p-2">
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
@@ -66,3 +72,46 @@
         </tbody>
     </table>
 </div>
+
+<script type="text/javascript">
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        CategoriesIndex = {
+            self: this,
+
+            init: function() {
+                this.addControls();
+                this.addEvents();
+            },
+
+            addControls: function () {
+                self.rows = document.querySelectorAll("#tableCategories tbody tr");
+            },
+
+            addEvents: function() {
+                self.rows.forEach(function (row) {
+                    row.addEventListener("click", function () {
+                        // Remove a classe de seleção de todos os TRs
+                        rows.forEach(function (anotherRow) {
+                            anotherRow.classList.remove("table-secondary");
+                        });
+                        // Adiciona a classe de seleção apenas ao TR clicado
+                        this.classList.add("table-secondary");
+                    });
+
+                    row.addEventListener("dblclick", function () {
+                        // Obtém o valor da primeira coluna (por exemplo, o ID do registro)
+                        var id = this.cells[0].textContent;
+                        // Redireciona para a rota de edição com o ID do registro
+                        window.location.href += '/Edit/' + Number(id); // Substitua Controller e Action pelos nomes corretos
+                    });
+                });
+            }
+        }
+
+        CategoriesIndex.init();
+
+    });
+
+</script>
