@@ -53,23 +53,22 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
+                    <td class="p-2">
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
-                    <td>
+                    <td class="p-2">
                         @(item.Description.Length > 30 ? $"{item.Description.Substring(0, 30)} ..." : item.Description)
                     </td>
-                    <td class="text-center">
+                    <td class="text-center p-2">
                         @Html.DisplayFor(modelItem => item.Price)
                     </td>
-                    <td class="text-center">
+                    <td class="text-center p-2">
                         @Html.DisplayFor(modelItem => item.Stock)
                     </td>
-                    <td>
+                    <td class="p-2">
                         @Html.DisplayFor(modelItem => item.Category.Name)
                     </td>
-
-                    <td>
+                    <td class="p-2">
                         <div class="d-flex justify-content-center">
                             <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" class="btn btn-sm btn-secondary mr-2">
                                 <span class="fas fa-edit" style="font-size:12px;"></span>
