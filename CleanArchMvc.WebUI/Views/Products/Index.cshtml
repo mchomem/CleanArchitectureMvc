@@ -15,6 +15,7 @@
 </div>
 
 <hr />
+
 <div class="row">
     <div class="col-md-12">
         <div>
@@ -30,9 +31,9 @@
 <br />
 
 <div class="panel panel-default">
-    <table class="table table-striped">
-        <tread>
-            <tr>
+    <table class="table">
+        <thead>
+            <tr style="background-color:silver;">
                 <th>
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
@@ -48,9 +49,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Category)
                 </th>
-                <th class="d-flex justify-content-center">Actions</th>
+                <th class="text-center">Actions</th>
             </tr>
-        </tread>
+        </thead>
         <tbody>
             @foreach (var item in Model)
             {
@@ -73,15 +74,15 @@
 
                     <td>
                         <div class="d-flex justify-content-center">
-                            <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" class="btn btn-warning mr-2">
+                            <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" class="btn btn-sm btn-warning mr-2">
                                 <span class="fas fa-edit" style="font-size:12px;"></span>
                             </a>
 
-                            <a asp-action="Details" asp-route-id="@item.Id" title="Details" class="btn btn-primary mr-2">
+                            <a asp-action="Details" asp-route-id="@item.Id" title="Details" class="btn btn-sm btn-primary mr-2">
                                 <span class="fas fa-eye" style="font-size:12px;"></span>
                             </a>
 
-                            <a asp-action="Delete" asp-route-id="@item.Id" title="Delete" class="btn btn-danger">
+                            <a asp-action="Delete" asp-route-id="@item.Id" title="Delete" class="btn btn-sm btn-danger">
                                 <span class="fas fa-trash-alt" style="font-size:12px;"></span>
                             </a>
                         </div>
