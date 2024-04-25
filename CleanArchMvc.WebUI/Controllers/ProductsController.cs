@@ -116,9 +116,13 @@ namespace CleanArchMvc.WebUI.Controllers
 
             if (product == null) return NotFound();
 
-            var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", "products", product.Image);
-            var exists = System.IO.File.Exists(imagePath);
-            ViewBag.ImageExist = exists;
+            if(!string.IsNullOrEmpty(product.Image))
+            {
+                var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", "products", product.Image);
+                ViewBag.ImageExist = System.IO.File.Exists(imagePath);
+            }
+            else
+                ViewBag.ImageExist = false;
 
             return View(product);
         }
@@ -129,6 +133,9 @@ namespace CleanArchMvc.WebUI.Controllers
 
             if (!Directory.Exists(uploadsFolder))
                 Directory.CreateDirectory(uploadsFolder);
+
+            if (file == null)
+                return;
 
             product.Image = $"{Guid.NewGuid()}__{Path.GetFileName(file.FileName)}";
             string pathToSave = Path.Combine(uploadsFolder, product.Image);
