@@ -2,8 +2,7 @@
 
 <h2>Register new Product</h2>
 
-<form asp-action="Create" method="post">
-
+<form asp-action="Create" method="post" enctype="multipart/form-data">
     <div class="form-horizontal">
         <hr />
 
@@ -60,7 +59,8 @@
         <div class="form-group">
             <label asp-for="Image" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="Image" class="form-control" />
+                <label>Select a imagem</label>
+                <input type="file" name="file" class="form-control" />
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
         </div>

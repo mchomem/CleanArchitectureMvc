@@ -30,11 +30,11 @@
         <dd class="col-md-10">
             @if (!ViewBag.ImageExist)
             {
-                <img src="~/images/noimage.png" class="rounded-circle" height="300" width="300" asp-append-version="true" />
+                <img src="~/images/defaults/noimage.png" class="rounded-circle" height="300" width="300" asp-append-version="true" />
             }
             else
             {
-                <img src="~/images/@Model.Image" class="rounded-circle" height="300" width="300" asp-append-version="true" />
+                <img src="~/images/products/@Model.Image" class="rounded-circle" height="300" width="300" asp-append-version="true" />
             }
         </dd>
     </dl>

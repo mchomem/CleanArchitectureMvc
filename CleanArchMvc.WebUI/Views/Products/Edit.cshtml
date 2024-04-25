@@ -1,11 +1,11 @@
 ﻿@model CleanArchMvc.Application.DTOs.ProductDTO
 
-<h3>Edit Product</h3>
+<h2>Edit Product</h2>
 
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
             <div class="form-horizontal">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -52,7 +52,7 @@
                 <!-- Image field-->
                 <div class="form-group">
                     <label asp-for="Image" class="control-label"></label>
-                    <input asp-for="Image" class="form-control" />
+                    <input type="file" name="file" class="form-control" />
                     <span asp-validation-for="Image" class="text-danger"></span>
                 </div>
 

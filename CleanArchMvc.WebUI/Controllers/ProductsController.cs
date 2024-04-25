@@ -1,6 +1,7 @@
 ﻿using CleanArchMvc.Application.DTOs;
 using CleanArchMvc.Application.Interfaces;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -34,15 +35,15 @@ namespace CleanArchMvc.WebUI.Controllers
         {
             // Recurso para carregar o input SELECT do html na página Razor.
             ViewBag.CategoryId = new SelectList(await _categoryService.GetCategories(), "Id", "Name");
-
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ProductDTO product)
+        public async Task<IActionResult> Create(ProductDTO product, IFormFile file)
         {
             if (ModelState.IsValid)
             {
+                await LoadAndSaveImage(product, file);
                 await _productService.Add(product);
                 return RedirectToAction(nameof(Index));
             }
@@ -67,10 +68,11 @@ namespace CleanArchMvc.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(ProductDTO product)
+        public async Task<IActionResult> Edit(ProductDTO product, IFormFile file)
         {
             if (ModelState.IsValid)
             {
+                await LoadAndSaveImage(product, file);
                 await _productService.Update(product);
                 return RedirectToAction(nameof(Index));
             }
@@ -114,12 +116,25 @@ namespace CleanArchMvc.WebUI.Controllers
 
             if (product == null) return NotFound();
 
-            var wwwroot = _webHostEnvironment.WebRootPath;
-            var image = Path.Combine(wwwroot, $"images\\{product.Image}");
-            var exists = System.IO.File.Exists(image);
+            var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", "products", product.Image);
+            var exists = System.IO.File.Exists(imagePath);
             ViewBag.ImageExist = exists;
 
             return View(product);
+        }
+
+        public async Task LoadAndSaveImage(ProductDTO product, IFormFile file)
+        {
+            string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images", "products");
+
+            if (!Directory.Exists(uploadsFolder))
+                Directory.CreateDirectory(uploadsFolder);
+
+            product.Image = $"{Guid.NewGuid()}__{Path.GetFileName(file.FileName)}";
+            string pathToSave = Path.Combine(uploadsFolder, product.Image);
+
+            using (FileStream fs = new FileStream(pathToSave, FileMode.Create))
+                await file.CopyToAsync(fs);
         }
     }
 }
