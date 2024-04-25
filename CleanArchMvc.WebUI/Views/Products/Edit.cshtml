@@ -1,8 +1,8 @@
 ﻿@model CleanArchMvc.Application.DTOs.ProductDTO
 
 <h2>Edit Product</h2>
-
 <hr />
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit" method="post" enctype="multipart/form-data">
@@ -61,8 +61,8 @@
                 <!-- Actions-->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
+                        <a asp-action="Index" class="btn btn-outline-info">Back to list</a>
                         <input type="submit" value="Save" class="btn btn-success" />
-                        <a asp-action="Index" class="btn btn-info">Back to list</a>
                     </div>
                 </div>
             </div>

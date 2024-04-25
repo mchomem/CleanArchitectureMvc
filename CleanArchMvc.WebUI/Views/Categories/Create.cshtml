@@ -5,10 +5,11 @@
 }
 
 <h2>@ViewData["Title"]</h2>
+<hr />
 
 <form asp-action="Create" method="post">
     <div class="form-horizontal">
-        <hr />
+        
 
         <div asp-validation-summary="All" class="text-danger"></div>
 
@@ -24,8 +25,8 @@
         <!-- Actions-->
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
+                <a asp-action="Index" class="btn btn-outline-info">Back to list</a>
                 <input type="submit" value="Create" class="btn btn-success" />
-                <a asp-action="Index" class="btn btn-info">Back to list</a>
             </div>
         </div>
     </div>

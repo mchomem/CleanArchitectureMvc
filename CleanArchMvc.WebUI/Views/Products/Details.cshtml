@@ -1,9 +1,9 @@
 ﻿@model CleanArchMvc.Application.DTOs.ProductDTO
 
-<h3>Product Details</h3>
+<h2>Product Details</h2>
+<hr />
 
 <div>
-    <hr />
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
@@ -67,10 +67,9 @@
     </dl>
 
     <div class="form-group">
+        <a asp-action="Index" class="btn btn-outline-info">Back to list</a>
         <a asp-action="Edit" asp-route-id="@Model.Id" title="Edit" class="btn btn-primary mr-2">
             Edit
         </a>
-
-        <a asp-action="Index" class="btn btn-info">Back to list</a>
     </div>
 </div>
