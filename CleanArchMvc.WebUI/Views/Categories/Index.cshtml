@@ -91,21 +91,29 @@
 
             addEvents: function() {
                 self.rows.forEach(function (row) {
-                    row.addEventListener("click", function () {
-                        // Remove a classe de seleção de todos os TRs
-                        rows.forEach(function (anotherRow) {
-                            anotherRow.classList.remove("table-secondary");
-                        });
-                        // Adiciona a classe de seleção apenas ao TR clicado
-                        this.classList.add("table-secondary");
-                    });
+                    CategoriesIndex.addHighlightingOnRow(row);
 
-                    row.addEventListener("dblclick", function () {
-                        // Obtém o valor da primeira coluna (por exemplo, o ID do registro)
-                        var id = this.cells[0].textContent;
-                        // Redireciona para a rota de edição com o ID do registro
-                        window.location.href += '/Edit/' + Number(id); // Substitua Controller e Action pelos nomes corretos
+                    CategoriesIndex.makeRequestEditingByDoubleClickingAtRow(row);
+                });
+            },
+
+            addHighlightingOnRow: function (row) {
+                row.addEventListener("click", function () {
+                    // Remove a classe de seleção de todos os TRs
+                    rows.forEach(function (anotherRow) {
+                        anotherRow.classList.remove("table-secondary");
                     });
+                    // Adiciona a classe de seleção apenas ao TR clicado
+                    this.classList.add("table-secondary");
+                });
+            },
+
+            makeRequestEditingByDoubleClickingAtRow: function (row) {
+                row.addEventListener("dblclick", function () {
+                    // Obtém o valor da primeira coluna (por exemplo, o ID do registro)
+                    var id = this.cells[0].textContent;
+                    // Redireciona para a rota de edição com o ID do registro
+                    window.location.href += '/Edit/' + Number(id); // Substitua Controller e Action pelos nomes corretos
                 });
             }
         }
