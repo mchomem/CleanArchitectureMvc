@@ -69,7 +69,8 @@ namespace CleanArchMvc.Infra.IoC
             services.ConfigureApplicationCookie(options =>
             {
                 // Quando o usuário não tiver acesso a um recurso a aplicação irá redirecioná-lo para o login.
-                options.AccessDeniedPath = "/Account/Login";
+                //options.AccessDeniedPath = "/Account/Login";
+                options.AccessDeniedPath = "/OperationLock/Index";
             });
 
             #endregion
