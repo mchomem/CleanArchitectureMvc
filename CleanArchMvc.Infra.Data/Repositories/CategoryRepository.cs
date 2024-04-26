@@ -26,7 +26,7 @@ namespace CleanArchMvc.Infra.Data.Repositories
         public async Task<Category> GetByIdAsync(int? id)
             => await _context.Category
                 .Where(x => x.Id == id)
-                .FirstAsync();
+                .FirstOrDefaultAsync();
 
         public async Task<IEnumerable<Category>> GetCategoriesAsync()
             => await _context.Category.ToListAsync();
