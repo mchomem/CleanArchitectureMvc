@@ -1,11 +1,4 @@
-﻿using CleanArchMvc.Application.DTOs;
-using CleanArchMvc.Application.Interfaces;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Threading.Tasks;
-
-namespace CleanArchMvc.WebUI.Controllers
+﻿namespace CleanArchMvc.WebUI.Controllers
 {
     [Authorize]
     public class CategoriesController : Controller

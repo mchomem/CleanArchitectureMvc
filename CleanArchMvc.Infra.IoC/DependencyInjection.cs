@@ -1,17 +1,4 @@
-﻿using CleanArchMvc.Application.Interfaces;
-using CleanArchMvc.Application.Mappings;
-using CleanArchMvc.Application.Services;
-using CleanArchMvc.Domain.Account;
-using CleanArchMvc.Domain.Interfaces;
-using CleanArchMvc.Infra.Data.Contexts;
-using CleanArchMvc.Infra.Data.Identity;
-using CleanArchMvc.Infra.Data.Repositories;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace CleanArchMvc.Infra.IoC
+﻿namespace CleanArchMvc.Infra.IoC
 {
     public static class DependencyInjection
     {

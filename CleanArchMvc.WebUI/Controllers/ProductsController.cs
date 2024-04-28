@@ -1,10 +1,4 @@
-﻿using CleanArchMvc.Application.DTOs;
-using CleanArchMvc.Application.Interfaces;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-
-namespace CleanArchMvc.WebUI.Controllers
+﻿namespace CleanArchMvc.WebUI.Controllers
 {
     [Authorize]
     public class ProductsController : Controller

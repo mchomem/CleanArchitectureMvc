@@ -1,0 +1,14 @@
+﻿global using CleanArchMvc.API.Models;
+global using CleanArchMvc.Application.DTOs;
+global using CleanArchMvc.Application.Interfaces;
+global using CleanArchMvc.Domain.Account;
+global using CleanArchMvc.Infra.IoC;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.IdentityModel.Tokens;
+global using Microsoft.OpenApi.Models;
+global using System.ComponentModel.DataAnnotations;
+global using System.IdentityModel.Tokens.Jwt;
+global using System.Reflection;
+global using System.Security.Claims;
+global using System.Text;

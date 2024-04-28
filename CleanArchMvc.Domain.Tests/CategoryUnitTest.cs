@@ -1,9 +1,3 @@
-using CleanArchMvc.Domain.Entities;
-using CleanArchMvc.Domain.Validations;
-using FluentAssertions;
-using System;
-using Xunit;
-
 namespace CleanArchMvc.Domain.Tests
 {
     public class CategoryUnitTest

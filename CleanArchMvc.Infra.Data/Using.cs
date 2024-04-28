@@ -1,0 +1,9 @@
+﻿global using CleanArchMvc.Domain.Account;
+global using CleanArchMvc.Domain.Entities;
+global using CleanArchMvc.Domain.Interfaces;
+global using CleanArchMvc.Infra.Data.Contexts;
+global using CleanArchMvc.Infra.Data.Identity;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;

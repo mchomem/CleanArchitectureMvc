@@ -1,8 +1,4 @@
-﻿using CleanArchMvc.Application.DTOs;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace CleanArchMvc.Application.Interfaces
+﻿namespace CleanArchMvc.Application.Interfaces
 {
     public interface ICategoryService
     {

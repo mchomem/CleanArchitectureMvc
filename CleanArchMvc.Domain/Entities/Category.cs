@@ -1,7 +1,4 @@
-﻿using CleanArchMvc.Domain.Validations;
-using System.Collections.Generic;
-
-namespace CleanArchMvc.Domain.Entities
+﻿namespace CleanArchMvc.Domain.Entities
 {
     public sealed class Category : EntityBase
     {

@@ -1,8 +1,4 @@
-﻿using CleanArchMvc.Domain.Account;
-using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
-
-namespace CleanArchMvc.Infra.Data.Identity
+﻿namespace CleanArchMvc.Infra.Data.Identity
 {
     public class AuthenticateService : IAuthenticate
     {

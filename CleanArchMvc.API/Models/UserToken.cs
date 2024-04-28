@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CleanArchMvc.API.Models
+﻿namespace CleanArchMvc.API.Models
 {
     public class UserToken
     {

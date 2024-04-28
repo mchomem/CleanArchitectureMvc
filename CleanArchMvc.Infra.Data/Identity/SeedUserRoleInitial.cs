@@ -1,10 +1,4 @@
-﻿using CleanArchMvc.Domain.Account;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace CleanArchMvc.Infra.Data.Identity
+﻿namespace CleanArchMvc.Infra.Data.Identity
 {
     public class SeedUserRoleInitial : ISeedUserRoleInitial
     {

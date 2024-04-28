@@ -1,8 +1,4 @@
-﻿using CleanArchMvc.Domain.Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace CleanArchMvc.Domain.Interfaces
+﻿namespace CleanArchMvc.Domain.Interfaces
 {
     // Métodos para pepositório específico (não genérico)
     public interface ICategoryRepository

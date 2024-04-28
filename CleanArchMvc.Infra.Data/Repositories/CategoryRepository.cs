@@ -1,12 +1,4 @@
-﻿using CleanArchMvc.Domain.Entities;
-using CleanArchMvc.Domain.Interfaces;
-using CleanArchMvc.Infra.Data.Contexts;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CleanArchMvc.Infra.Data.Repositories
+﻿namespace CleanArchMvc.Infra.Data.Repositories
 {
     public class CategoryRepository : ICategoryRepository
     {
@@ -14,6 +6,7 @@ namespace CleanArchMvc.Infra.Data.Repositories
 
         public CategoryRepository(ApplicationDbContext context)
             => _context = context;
+
 
         public async Task<Category> CreateAsync(Category category)
         {

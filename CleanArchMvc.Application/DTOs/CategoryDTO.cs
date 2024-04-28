@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-
-namespace CleanArchMvc.Application.DTOs
+﻿namespace CleanArchMvc.Application.DTOs
 {
     // Esta classe pode atuar no projeto também como uma ViewModel para o asp.net mvc
     // portanto poderá se valer de data annotations de validação

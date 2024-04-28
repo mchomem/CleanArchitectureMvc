@@ -1,0 +1,12 @@
+﻿global using AutoMapper;
+global using CleanArchMvc.Application.DTOs;
+global using CleanArchMvc.Application.Interfaces;
+global using CleanArchMvc.Application.Products.Commands;
+global using CleanArchMvc.Application.Products.Queries;
+global using CleanArchMvc.Domain.Entities;
+global using CleanArchMvc.Domain.Interfaces;
+global using MediatR;
+global using System.ComponentModel;
+global using System.ComponentModel.DataAnnotations;
+global using System.ComponentModel.DataAnnotations.Schema;
+global using System.Text.Json.Serialization;

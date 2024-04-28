@@ -1,8 +1,4 @@
-﻿using CleanArchMvc.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace CleanArchMvc.Infra.Data.EntitiesConfigutations
+﻿namespace CleanArchMvc.Infra.Data.EntitiesConfigutations
 {
     public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {

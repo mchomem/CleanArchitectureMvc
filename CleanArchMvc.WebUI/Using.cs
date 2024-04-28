@@ -1,0 +1,11 @@
+﻿global using CleanArchMvc.Application.DTOs;
+global using CleanArchMvc.Application.Interfaces;
+global using CleanArchMvc.Domain.Account;
+global using CleanArchMvc.Infra.IoC;
+global using CleanArchMvc.WebUI.Models;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.AspNetCore.Mvc.Rendering;
+global using System.ComponentModel.DataAnnotations;
+global using System.Diagnostics;
+global using CleanArchMvc.WebUI.ViewModels;
