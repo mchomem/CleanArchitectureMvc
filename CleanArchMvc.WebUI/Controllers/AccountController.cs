@@ -29,10 +29,9 @@ namespace CleanArchMvc.WebUI.Controllers
             if (result)
             {
                 if (string.IsNullOrEmpty(model.ReturnUrl))
-                {
                     return RedirectToAction("Index", "Home");
-                }
-                return RedirectToAction(model.ReturnUrl);
+
+                return Redirect(model.ReturnUrl);
             }
             else
             {
