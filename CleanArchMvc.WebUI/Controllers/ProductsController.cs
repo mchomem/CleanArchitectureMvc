@@ -1,13 +1,8 @@
 ﻿using CleanArchMvc.Application.DTOs;
 using CleanArchMvc.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.IO;
-using System.Threading.Tasks;
 
 namespace CleanArchMvc.WebUI.Controllers
 {
@@ -41,13 +36,17 @@ namespace CleanArchMvc.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ProductDTO product, IFormFile file)
+        public async Task<IActionResult> Create(ProductDTO product, IFormFile? file)
         {
             if (ModelState.IsValid)
             {
                 await LoadAndSaveImage(product, file);
                 await _productService.Add(product);
                 return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                ViewBag.CategoryId = new SelectList(await _categoryService.GetCategories(), "Id", "Name");
             }
 
             return View(product);
@@ -70,13 +69,17 @@ namespace CleanArchMvc.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(ProductDTO product, IFormFile file)
+        public async Task<IActionResult> Edit(ProductDTO product, IFormFile? file)
         {
             if (ModelState.IsValid)
             {
                 await LoadAndSaveImage(product, file);
                 await _productService.Update(product);
                 return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                ViewBag.CategoryId = new SelectList(await _categoryService.GetCategories(), "Id", "Name");
             }
 
             return View(product);
@@ -98,15 +101,7 @@ namespace CleanArchMvc.WebUI.Controllers
         [HttpPost(), ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            try
-            {
-                await _productService.Remove(id);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
+            await _productService.Remove(id);
             return RedirectToAction(nameof(Index));
         }
 
@@ -119,7 +114,7 @@ namespace CleanArchMvc.WebUI.Controllers
 
             if (product == null) return NotFound();
 
-            if(!string.IsNullOrEmpty(product.Image))
+            if (!string.IsNullOrEmpty(product.Image))
             {
                 var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", "products", product.Image);
                 ViewBag.ImageExist = System.IO.File.Exists(imagePath);
