@@ -8,7 +8,7 @@
             => _authenticate = authenticate;
 
         [HttpGet]
-        public IActionResult Login(string returnUrl)
+        public IActionResult Login(string returnUrl = "/Home/Index")
         {
             return View(new LoginViewModel()
             {
