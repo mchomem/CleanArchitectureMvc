@@ -11,21 +11,21 @@
 
                 <input type="hidden" asp-for="Id" />
 
-                <!-- Name field-->
+                <!-- Name field -->
                 <div class="form-group">
                     <label asp-for="Name" class="control-label"></label>
                     <input asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
 
-                <!-- Description field-->
+                <!-- Description field -->
                 <div class="form-group">
                     <label asp-for="Description" class="control-label"></label>
                     <input asp-for="Description" class="form-control" />
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
 
-                <!-- Price field-->
+                <!-- Price field -->
                 <div class="form-group">
                     <label asp-for="Price" class="control-label"></label>
                     <input asp-for="Price" class="form-control" />
@@ -33,14 +33,14 @@
 
                 </div>
 
-                <!-- Stock field-->
+                <!-- Stock field -->
                 <div class="form-group">
                     <label asp-for="Stock" class="control-label"></label>
                     <input asp-for="Stock" class="form-control" />
                     <span asp-validation-for="Stock" class="text-danger"></span>
                 </div>
 
-                <!-- CategoryId field-->
+                <!-- CategoryId field -->
                 <div class="form-group">
                     <label asp-for="CategoryId" class="control-label"></label>
                     <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId">
@@ -49,17 +49,18 @@
                     <span asp-validation-for="CategoryId" class="text-danger"></span>
                 </div>
 
-                <!-- Image field-->
+                <!-- Image field -->
                 <div class="form-group">
                     <label asp-for="Image" class="control-label"></label>
                     <div class="custom-file">
+                        <input type="hidden" asp-for="Image" />
                         <input type="file" name="file" class="custom-file-input" />
                         <label class="custom-file-label">Select a imagem</label>
                     </div>
                     <span asp-validation-for="Image" class="text-danger"></span>
                 </div>
 
-                <!-- Actions-->
+                <!-- Actions -->
                 <div class="form-group">
                     <a asp-action="Index" class="btn btn-outline-info">Back to list</a>
                     <input type="submit" value="Save" class="btn btn-primary" />

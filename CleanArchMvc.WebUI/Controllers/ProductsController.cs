@@ -67,7 +67,10 @@
         {
             if (ModelState.IsValid)
             {
-                await LoadAndSaveImage(product, file);
+                // Somente muda a imagem se o campo de arquivo for alimentado, caso contrário mantem o que já vem do banco.
+                if(string.IsNullOrEmpty(product.Image) && file != null)                    
+                    await LoadAndSaveImage(product, file);
+
                 await _productService.Update(product);
                 return RedirectToAction(nameof(Index));
             }
