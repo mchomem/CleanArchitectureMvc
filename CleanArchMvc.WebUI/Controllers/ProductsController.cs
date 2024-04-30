@@ -75,7 +75,7 @@
                     await UploadAndSaveImage(product, file);
 
                     // excluir do servidor a imagem antiga.
-                    if(!string.IsNullOrEmpty(oldImageName))
+                    if (!string.IsNullOrEmpty(oldImageName))
                         await DeleteImage(oldImageName);
                 }
 
@@ -151,10 +151,8 @@
         {
             await Task.Run(() =>
             {
-                string imageFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images", "products");
-
-                var fullImageFolder = $"{imageFolder}/{fileName}";
-                FileInfo fi = new(fullImageFolder);
+                string imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", "products", fileName);
+                FileInfo fi = new(imagePath);
 
                 if (fi.Exists)
                     fi.Delete();
