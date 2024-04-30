@@ -34,7 +34,9 @@
         {
             if (ModelState.IsValid)
             {
-                await UploadAndSaveImage(product, file);
+                if(file != null)
+                    await UploadAndSaveImage(product, file);
+
                 await _productService.Add(product);
                 return RedirectToAction(nameof(Index));
             }
