@@ -34,7 +34,7 @@
         {
             if (ModelState.IsValid)
             {
-                await LoadAndSaveImage(product, file);
+                await UploadAndSaveImage(product, file);
                 await _productService.Add(product);
                 return RedirectToAction(nameof(Index));
             }
@@ -72,7 +72,7 @@
                 // Somente muda a imagem se o campo de arquivo for alimentado, caso contrário mantem o que já vem do banco.
                 if (file != null)
                 {
-                    await LoadAndSaveImage(product, file);
+                    await UploadAndSaveImage(product, file);
 
                     // excluir do servidor a imagem antiga.
                     if(!string.IsNullOrEmpty(oldImageName))
@@ -130,7 +130,7 @@
             return View(product);
         }
 
-        public async Task LoadAndSaveImage(ProductDTO product, IFormFile file)
+        public async Task UploadAndSaveImage(ProductDTO product, IFormFile file)
         {
             string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images", "products");
 
