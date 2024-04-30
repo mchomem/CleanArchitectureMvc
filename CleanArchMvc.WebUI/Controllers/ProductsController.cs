@@ -67,9 +67,17 @@
         {
             if (ModelState.IsValid)
             {
+                var oldImageName = !string.IsNullOrEmpty(product.Image) ? product.Image : string.Empty;
+
                 // Somente muda a imagem se o campo de arquivo for alimentado, caso contrário mantem o que já vem do banco.
-                if(string.IsNullOrEmpty(product.Image) && file != null)                    
+                if (file != null)
+                {
                     await LoadAndSaveImage(product, file);
+
+                    // excluir do servidor a imagem antiga.
+                    if(!string.IsNullOrEmpty(oldImageName))
+                        await DeleteImage(oldImageName);
+                }
 
                 await _productService.Update(product);
                 return RedirectToAction(nameof(Index));
@@ -137,6 +145,20 @@
 
             using (FileStream fs = new FileStream(pathToSave, FileMode.Create))
                 await file.CopyToAsync(fs);
+        }
+
+        public async Task DeleteImage(string fileName)
+        {
+            await Task.Run(() =>
+            {
+                string imageFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images", "products");
+
+                var fullImageFolder = $"{imageFolder}/{fileName}";
+                FileInfo fi = new(fullImageFolder);
+
+                if (fi.Exists)
+                    fi.Delete();
+            });
         }
     }
 }
