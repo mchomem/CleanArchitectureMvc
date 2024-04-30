@@ -113,7 +113,7 @@
                     // Obtém o valor da primeira coluna (por exemplo, o ID do registro)
                     var id = this.cells[0].textContent;
                     // Redireciona para a rota de edição com o ID do registro
-                    window.location.href += '/Edit/' + Number(id); // Substitua Controller e Action pelos nomes corretos
+                    window.location.href += `/Edit/${ Number(id) }`; // Substitua Controller e Action pelos nomes corretos
                 });
             }
         }
