@@ -1,103 +1,102 @@
-﻿namespace CleanArchMvc.WebUI.Controllers
+﻿namespace CleanArchMvc.WebUI.Controllers;
+
+[Authorize]
+public class CategoriesController : Controller
 {
-    [Authorize]
-    public class CategoriesController : Controller
+    private readonly ICategoryService _categoryService;
+
+    public CategoriesController(ICategoryService categoryService)
+        => _categoryService = categoryService;
+
+    [HttpGet]
+    public async Task<IActionResult> Index()
     {
-        private readonly ICategoryService _categoryService;
+        var categories = await _categoryService.GetCategories();
+        return View(categories);
+    }
 
-        public CategoriesController(ICategoryService categoryService)
-            => _categoryService = categoryService;
+    [HttpGet] // Método para requisitar o formulário
+    public IActionResult Create()
+    {
+        return View();
+    }
 
-        [HttpGet]
-        public async Task<IActionResult> Index()
+    [HttpPost]
+    public async Task<IActionResult> Create(CategoryDTO category)
+    {
+        if (ModelState.IsValid)
         {
-            var categories = await _categoryService.GetCategories();
-            return View(categories);
+            await _categoryService.Add(category);
+            return RedirectToAction(nameof(Index));
         }
 
-        [HttpGet] // Método para requisitar o formulário
-        public IActionResult Create()
-        {
-            return View();
-        }
+        return View(category);
+    }
 
-        [HttpPost]
-        public async Task<IActionResult> Create(CategoryDTO category)
+    [HttpGet] // Isso faz carregar (consulta) a página de edição contendo o registro para edição.
+    public async Task<IActionResult> Edit(int? id)
+    {
+        return await GetCategory(id);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(CategoryDTO category)
+    {
+        if (ModelState.IsValid)
         {
-            if (ModelState.IsValid)
+            try
             {
-                await _categoryService.Add(category);
-                return RedirectToAction(nameof(Index));
+                await _categoryService.Update(category);
             }
-
-            return View(category);
-        }
-
-        [HttpGet] // Isso faz carregar (consulta) a página de edição contendo o registro para edição.
-        public async Task<IActionResult> Edit(int? id)
-        {
-            return await GetCategory(id);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Edit(CategoryDTO category)
-        {
-            if (ModelState.IsValid)
+            catch (Exception)
             {
-                try
-                {
-                    await _categoryService.Update(category);
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                return RedirectToAction(nameof(Index));
-            }
-
-            return View(category);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Delete(int? id)
-        {
-            return await GetCategory(id);
-        }
-
-        [HttpPost(), ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    await _categoryService.Remove(id);
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
+                throw;
             }
 
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Details(int? id)
+        return View(category);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Delete(int? id)
+    {
+        return await GetCategory(id);
+    }
+
+    [HttpPost(), ActionName("Delete")]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        if (ModelState.IsValid)
         {
-            return await GetCategory(id);
+            try
+            {
+                await _categoryService.Remove(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public async Task<IActionResult> GetCategory(int? id)
-        {
-            if (id == null) return NotFound();
+        return RedirectToAction(nameof(Index));
+    }
 
-            var category = await _categoryService.GetById(id);
+    [HttpGet]
+    public async Task<IActionResult> Details(int? id)
+    {
+        return await GetCategory(id);
+    }
 
-            if (category == null) return NotFound();
+    public async Task<IActionResult> GetCategory(int? id)
+    {
+        if (id == null) return NotFound();
 
-            return View(category);
-        }
+        var category = await _categoryService.GetById(id);
+
+        if (category == null) return NotFound();
+
+        return View(category);
     }
 }

@@ -1,70 +1,69 @@
-﻿namespace CleanArchMvc.API.Controllers
+﻿namespace CleanArchMvc.API.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+[Authorize]
+public class ProductsController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    [Authorize]
-    public class ProductsController : ControllerBase
+    private readonly IProductService _productService;
+
+    public ProductsController(IProductService productService)
+        => _productService = productService;
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<ProductDTO>>> Get()
     {
-        private readonly IProductService _productService;
+        var products = await _productService.GetProducts();
 
-        public ProductsController(IProductService productService)
-            => _productService = productService;
+        if (products == null)
+            return NotFound("Products not found");
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductDTO>>> Get()
-        {
-            var products = await _productService.GetProducts();
+        return Ok(products);
+    }
 
-            if (products == null)
-                return NotFound("Products not found");
+    [HttpGet("{id:int}", Name = "GetProduct")]
+    public async Task<ActionResult<ProductDTO>> Get(int id)
+    {
+        var product = await _productService.GetById(id);
 
-            return Ok(products);
-        }
+        if (product == null)
+            return NotFound("Product not found");
 
-        [HttpGet("{id:int}", Name = "GetProduct")]
-        public async Task<ActionResult<ProductDTO>> Get(int id)
-        {
-            var product = await _productService.GetById(id);
+        return Ok(product);
+    }
 
-            if (product == null)
-                return NotFound("Product not found");
+    [HttpPost]
+    public async Task<ActionResult<ProductDTO>> Post([FromBody] ProductDTO product)
+    {
+        if (product == null)
+            return BadRequest();
 
-            return Ok(product);
-        }
+        await _productService.Add(product);
 
-        [HttpPost]
-        public async Task<ActionResult<ProductDTO>> Post([FromBody] ProductDTO product)
-        {
-            if (product == null)
-                return BadRequest();
+        return new CreatedAtRouteResult("GetProduct", new { id = product.Id }, product);
+    }
 
-            await _productService.Add(product);
+    [HttpPut]
+    public async Task<ActionResult<ProductDTO>> Put(int id, [FromBody] ProductDTO product)
+    {
+        if (product == null || id != product.Id)
+            return BadRequest("Invalid data");
 
-            return new CreatedAtRouteResult("GetProduct", new { id = product.Id }, product);
-        }
+        await _productService.Update(product);
 
-        [HttpPut]
-        public async Task<ActionResult<ProductDTO>> Put(int id, [FromBody] ProductDTO product)
-        {
-            if (product == null || id != product.Id)
-                return BadRequest("Invalid data");
+        return Ok(product);
+    }
 
-            await _productService.Update(product);
+    [HttpDelete("{id:int}")]
+    public async Task<ActionResult<ProductDTO>> Delete(int id)
+    {
+        var product = await _productService.GetById(id);
 
-            return Ok(product);
-        }
+        if (product == null)
+            return NotFound("Product not found");
 
-        [HttpDelete("{id:int}")]
-        public async Task<ActionResult<ProductDTO>> Delete(int id)
-        {
-            var product = await _productService.GetById(id);
+        await _productService.Remove(id);
 
-            if (product == null)
-                return NotFound("Product not found");
-
-            await _productService.Remove(id);
-
-            return Ok(product);
-        }
+        return Ok(product);
     }
 }

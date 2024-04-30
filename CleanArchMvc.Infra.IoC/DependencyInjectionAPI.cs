@@ -1,57 +1,56 @@
-﻿namespace CleanArchMvc.Infra.IoC
+﻿namespace CleanArchMvc.Infra.IoC;
+
+public static class DependencyInjectionAPI
 {
-    public static class DependencyInjectionAPI
+    public static IServiceCollection AddInfrastructureAPI(this IServiceCollection services, IConfiguration configuration)
     {
-        public static IServiceCollection AddInfrastructureAPI(this IServiceCollection services, IConfiguration configuration)
+        #region Database
+
+        services.AddDbContext<ApplicationDbContext>(options =>
         {
-            #region Database
+            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
+        });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-            {
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
-            });
+        #endregion
 
-            #endregion
+        #region Repositories
 
-            #region Repositories
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<IProductRepository, ProductRepository>();
 
-            services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped<IProductRepository, ProductRepository>();
+        #endregion
 
-            #endregion
+        #region Services
 
-            #region Services
+        services.AddScoped<ICategoryService, CategoryService>();
+        services.AddScoped<IProductService, ProductService>();
 
-            services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<IProductService, ProductService>();
+        #endregion
 
-            #endregion
+        #region Automapper Profile
 
-            #region Automapper Profile
+        services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
-            services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
+        #endregion
 
-            #endregion
+        #region MediatR
 
-            #region MediatR
+        var myhandlers = AppDomain.CurrentDomain.Load("CleanArchMvc.Application");
+        services.AddMediatR(configuration => configuration.RegisterServicesFromAssemblies(myhandlers));
 
-            var myhandlers = AppDomain.CurrentDomain.Load("CleanArchMvc.Application");
-            services.AddMediatR(configuration => configuration.RegisterServicesFromAssemblies(myhandlers));
+        #endregion
 
-            #endregion
+        #region Security (identity)
 
-            #region Security (identity)
+        services
+            .AddIdentity<ApplicationUser, IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
 
-            services
-                .AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+        services.AddScoped<IAuthenticate, AuthenticateService>();
 
-            services.AddScoped<IAuthenticate, AuthenticateService>();
+        #endregion
 
-            #endregion
-
-            return services;
-        }
+        return services;
     }
 }

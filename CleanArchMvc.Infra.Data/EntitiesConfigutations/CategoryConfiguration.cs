@@ -1,24 +1,23 @@
-﻿namespace CleanArchMvc.Infra.Data.EntitiesConfigutations
+﻿namespace CleanArchMvc.Infra.Data.EntitiesConfigutations;
+
+public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {
-    public class CategoryConfiguration : IEntityTypeConfiguration<Category>
+    public void Configure(EntityTypeBuilder<Category> builder)
     {
-        public void Configure(EntityTypeBuilder<Category> builder)
-        {
-            builder.HasKey(x => x.Id);
+        builder.HasKey(x => x.Id);
 
-            builder
-                .Property(x => x.Name)
-                .HasMaxLength(100)
-                .HasColumnType("varchar")
-                .IsRequired();
+        builder
+            .Property(x => x.Name)
+            .HasMaxLength(100)
+            .HasColumnType("varchar")
+            .IsRequired();
 
-            builder
-                .HasData
-                (
-                    new Category(1, "Material Escolar"),
-                    new Category(2, "Eletrônicos"),
-                    new Category(3, "Acessórios")
-                );
-        }
+        builder
+            .HasData
+            (
+                new Category(1, "Material Escolar"),
+                new Category(2, "Eletrônicos"),
+                new Category(3, "Acessórios")
+            );
     }
 }
