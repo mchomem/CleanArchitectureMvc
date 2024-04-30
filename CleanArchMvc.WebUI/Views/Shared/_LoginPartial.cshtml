@@ -1,19 +1,14 @@
-﻿
-@* Se o usuário estiver logado exibe o nome caso contrário oferece ao usuário o link para fazer login. *@
+﻿@* Se o usuário estiver logado exibe o nome caso contrário oferece ao usuário o link para fazer login. *@
 
 @if (Context.User.Identity.IsAuthenticated)
 {
     <li class="nav-item">
-        <a class="nav-link text-capitalize" asp-area="" asp-controller="Account" asp-action="Logout" style="color:blue;">
-            @Context.User.Identity.Name - Logout
-        </a>
+        <button class="btn btn-outline-dark" onclick="document.location.href = '/Account/Logout'">@Context.User.Identity.Name - Logout</button>
     </li>
 }
 else
 {
     <li class="nav-item">
-        <a class="nav-link text-capitalize" asp-area="" asp-controller="Account" asp-action="Login" style="color:blue;">
-            Login
-        </a>
+        <button class="btn btn-outline-dark" onclick="document.location.href = '/Account/Login'">Login</button>
     </li>
 }
