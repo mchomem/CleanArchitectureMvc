@@ -9,10 +9,23 @@ public class CategoriesController : Controller
         => _categoryService = categoryService;
 
     [HttpGet]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int startPage = 1)
     {
+        // Ideia de paginação: https://www.youtube.com/watch?v=O57nsLyZubc
+
         var categories = await _categoryService.GetCategories();
-        return View(categories);
+
+        const int pageSize = 10;
+        
+        if (startPage < 1) startPage = 1;
+
+        int rescCount = categories.Count();
+        var pager = new Pager(rescCount, startPage, pageSize);
+        int recSkip = (startPage - 1) * pageSize;
+        var data = categories.Skip(recSkip).Take(pager.PageSize).ToList();
+        this.ViewBag.Pager = pager;
+
+        return View(data);
     }
 
     [HttpGet] // Método para requisitar o formulário
