@@ -3,7 +3,12 @@
 @if (Context.User.Identity.IsAuthenticated)
 {
     <li class="nav-item">
-        <button class="btn btn-outline-dark" onclick="document.location.href = '/Account/Logout'">@Context.User.Identity.Name</button>
+        <button class="btn btn-primary mr-2">
+            <i class="fas fa-user mr-2"></i> @Context.User.Identity.Name
+        </button>
+    </li>
+    <li class="nav-item">
+        <button class="btn btn-outline-dark" onclick="document.location.href = '/Account/Logout'">Logout</button>
     </li>
 }
 else
