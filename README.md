@@ -10,3 +10,17 @@ Small improvements have been made to both the frontend and backend.
 ## Application architecture diagram
 
 ![Application architecture](/Docs/Images/application-architecture.png)
+
+## Application images
+
+Home
+
+![Home](/Docs/Images/1-home.png)
+
+Product Management
+
+![Product list](/Docs/Images/2-products-list.png)
+
+![Product new](/Docs/Images/3-products-new.png)
+
+![Product details](/Docs/Images/4-products-details.png)
