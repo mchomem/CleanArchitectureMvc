@@ -30,5 +30,5 @@ Additional improvements
 
 - Sending product image to the server;
 - Deleting unused product image for registrations;
-- Pagination of listings;
+- Pagination of listings based in the video tutorial [asp.net core MVC crud Pagination](https://www.youtube.com/watch?v=O57nsLyZubc);
 - Graphical improvements for action buttons;
