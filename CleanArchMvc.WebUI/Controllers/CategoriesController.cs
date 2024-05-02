@@ -1,4 +1,6 @@
-﻿namespace CleanArchMvc.WebUI.Controllers;
+﻿using CleanArchMvc.Domain.Entities;
+
+namespace CleanArchMvc.WebUI.Controllers;
 
 [Authorize]
 public class CategoriesController : Controller
@@ -9,10 +11,24 @@ public class CategoriesController : Controller
         => _categoryService = categoryService;
 
     [HttpGet]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int pg = 1)
     {
         var categories = await _categoryService.GetCategories();
-        return View(categories);
+
+        const int pageSize = 10;
+        if (pg < 1)
+            pg = 1;
+
+        int rescCount = categories.Count();
+
+        var pager = new Pager(rescCount, pg, pageSize);
+        int resSkip = (pg - 1) * pageSize;
+
+        var data = categories.Skip(resSkip).Take(pager.PageSize).ToList();
+
+        this.ViewBag.Pager = pager;
+
+        return View(data);
     }
 
     [HttpGet] // Método para requisitar o formulário
