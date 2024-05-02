@@ -24,3 +24,11 @@ Product Management
 ![Product new](/Docs/Images/3-products-new.png)
 
 ![Product details](/Docs/Images/4-products-details.png)
+
+
+Additional improvements
+
+- Sending product image to the server;
+- Deleting unused product image for registrations;
+- Pagination of listings;
+- Graphical improvements for action buttons;
