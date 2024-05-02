@@ -62,16 +62,16 @@
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td class="p-2">
-                        <div class="d-flex justify-content-center">
-                            <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" class="btn btn-sm btn-secondary mr-2">
+                        <div class="d-flex justify-content-center btn-group">
+                            <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" class="btn btn-sm btn-outline-secondary">
                                 <span class="fas fa-edit" style="font-size:12px;"></span>
                             </a>
 
-                            <a asp-action="Details" asp-route-id="@item.Id" title="Details" class="btn btn-sm btn-primary mr-2">
+                            <a asp-action="Details" asp-route-id="@item.Id" title="Details" class="btn btn-sm btn-outline-primary">
                                 <span class="fas fa-eye" style="font-size:12px;"></span>
                             </a>
 
-                            <a asp-action="Delete" asp-route-id="@item.Id" title="Delete" class="btn btn-sm btn-danger">
+                            <a asp-action="Delete" asp-route-id="@item.Id" title="Delete" class="btn btn-sm btn-outline-danger">
                                 <span class="fas fa-trash-alt" style="font-size:12px;"></span>
                             </a>
                         </div>
