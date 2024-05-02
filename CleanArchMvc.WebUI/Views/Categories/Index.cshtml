@@ -2,16 +2,6 @@
 
 @{
     ViewData["Title"] = "Categories Management";
-
-    Pager pager = new Pager();
-
-    int pageNo = 0;
-
-    if (ViewBag.Pager != null)
-    {
-        pager = ViewBag.Pager;
-        pageNo = pager.CurrentPage;
-    }
 }
 
 <style>
@@ -30,7 +20,7 @@
         <div>
             <div class="pull-left">
                 <a asp-action="Create" class="btn btn-primary">
-                    <span title="Register New" class="fas fa-plus"></span> Register New
+                    <span tutle="Register New" class="fas fa-plus"></span> Register New
                 </a>
             </div>
         </div>
@@ -81,9 +71,6 @@
             }
         </tbody>
     </table>
-
-    <partial name="_pager" model="@pager" />
-
 </div>
 
 <script type="text/javascript">
@@ -93,7 +80,7 @@
         CategoriesIndex = {
             self: this,
 
-            init: function () {
+            init: function() {
                 this.addControls();
                 this.addEvents();
             },
@@ -102,7 +89,7 @@
                 self.rows = document.querySelectorAll("#tableCategories tbody tr");
             },
 
-            addEvents: function () {
+            addEvents: function() {
                 self.rows.forEach(function (row) {
                     CategoriesIndex.addHighlightingOnRow(row);
 
@@ -126,7 +113,7 @@
                     // Obtém o valor da primeira coluna (por exemplo, o ID do registro)
                     var id = this.cells[0].textContent;
                     // Redireciona para a rota de edição com o ID do registro
-                    window.location.href += `/Edit/${Number(id)}`; // Substitua Controller e Action pelos nomes corretos
+                    window.location.href += `/Edit/${ Number(id) }`; // Substitua Controller e Action pelos nomes corretos
                 });
             }
         }
