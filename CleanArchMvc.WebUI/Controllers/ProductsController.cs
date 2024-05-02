@@ -15,10 +15,25 @@ public class ProductsController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int pg = 1)
     {
         var products = await _productService.GetProducts();
-        return View(products);
+
+        const int pageSize = 10;
+        if (pg < 1)
+            pg = 1;
+
+        int rescCount = products.Count();
+
+        var pager = new Pager(rescCount, pg, pageSize);
+
+        int resSkip = (pg - 1) * pageSize;
+
+        var data = products.Skip(resSkip).Take(pager.PageSize).ToList();
+
+        this.ViewBag.Pager = pager;
+
+        return View(data);
     }
 
     [HttpGet]

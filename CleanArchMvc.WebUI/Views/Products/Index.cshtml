@@ -2,6 +2,16 @@
 
 @{
     ViewData["Title"] = "Products Management";
+
+    Pager pager = new Pager();
+
+    int pageNo = 0;
+
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
 }
 
 <style>
@@ -87,4 +97,6 @@
             }
         </tbody>
     </table>
+
+    <partial name="_pager" model="@pager" />
 </div>
