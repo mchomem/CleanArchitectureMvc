@@ -25,11 +25,11 @@ public static class DependencyInjectionJWT
                 //valores validos
                 ValidIssuer = configuration["Jwt:Issuer"],
                 ValidAudience = configuration["Jwt:Audience"],
-                IssuerSigningKey = new SymmetricSecurityKey(
-                     Encoding.UTF8.GetBytes(configuration["Jwt:SecretKey"])),
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:SecretKey"])),
                 ClockSkew = TimeSpan.Zero
             };
         });
+
         return services;
     }
 }
