@@ -11,6 +11,8 @@ Small improvements have been made to both the frontend and backend.
 
 ![Application architecture](/Docs/Images/application-architecture.png)
 
+![Project organization](/Docs/Images/project-organization.png)
+
 ## Application images
 
 Home
@@ -26,7 +28,7 @@ Product Management
 ![Product details](/Docs/Images/4-products-details.png)
 
 
-Additional improvements
+## Additional improvements
 
 - Sending product image to the server;
 - Deleting unused product image for registrations;
