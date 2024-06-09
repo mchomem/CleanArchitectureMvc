@@ -25,14 +25,10 @@
 <hr />
 
 <div class="row mb-3">
-    <div class="col-md-12">
-        <div>
-            <div class="pull-left">
-                <a asp-action="Create" class="btn btn-sm btn-success" title="New">
-                    <span class="fas fa-plus"></span><label class="ml-2 mb-0">New</label>
-                </a>
-            </div>
-        </div>
+    <div class="col-md-12 d-flex justify-content-end">
+        <a asp-action="Create" class="btn btn-sm btn-success" title="New">
+            <span class="fas fa-plus"></span><label class="ml-2 mb-0">New</label>
+        </a>
     </div>
 </div>
 
@@ -91,7 +87,7 @@
         CategoriesIndex = {
             self: this,
 
-            init: function() {
+            init: function () {
                 this.addControls();
                 this.addEvents();
             },
@@ -100,7 +96,7 @@
                 self.rows = document.querySelectorAll("#tableCategories tbody tr");
             },
 
-            addEvents: function() {
+            addEvents: function () {
                 self.rows.forEach(function (row) {
                     CategoriesIndex.addHighlightingOnRow(row);
 
@@ -124,7 +120,7 @@
                     // Obtém o valor da primeira coluna (por exemplo, o ID do registro)
                     var id = this.cells[0].textContent;
                     // Redireciona para a rota de edição com o ID do registro
-                    window.location.href += `/Edit/${ Number(id) }`; // Substitua Controller e Action pelos nomes corretos
+                    window.location.href += `/Edit/${Number(id)}`; // Substitua Controller e Action pelos nomes corretos
                 });
             }
         }
