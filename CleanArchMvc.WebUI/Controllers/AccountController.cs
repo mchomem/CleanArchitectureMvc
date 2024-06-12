@@ -60,4 +60,10 @@ public class AccountController : Controller
             return View(model);
         }
     }
+
+    [HttpGet]
+    public IActionResult Details()
+    {
+        return View();
+    }
 }
