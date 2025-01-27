@@ -15,7 +15,7 @@ Small improvements have been made to both the frontend and backend.
 
 ![Application architecture](/Docs/Images/application-architecture.png)
 
-## Project organization in Visual Studio 2022 solution.
+## Project organization in Visual Studio 2022 solution
 
 ![Project organization](/Docs/Images/project-organization.png)
 
