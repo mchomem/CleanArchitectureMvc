@@ -7,6 +7,10 @@ In this course, in addition to studying the clean architecture approach implemen
 As usual, I always modify some details of the project to go a little further than proposed, this project is not simply typing the code and compiling, much less copying and pasting.
 Small improvements have been made to both the frontend and backend.
 
+## ER model
+
+![ER model](/Docs/Images/er.png)
+
 ## Application architecture diagram
 
 ![Application architecture](/Docs/Images/application-architecture.png)
