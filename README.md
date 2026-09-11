@@ -1,4 +1,4 @@
-# Clean Architecture with Mvc
+﻿# Clean Architecture with Mvc
 
 This repository contains a simple and functional application model for managing products and categories (of products).
 This project is the result of the course [Clean Architecture Essencial - ASP .NET Core com C#](https://www.udemy.com/course/clean-architecture-essencial-asp-net-core-com-c/?kw=clean+architecture+com&src=sac&couponCode=ST6MT42324) created by [Jose Carlos Macoratti](https://www.linkedin.com/in/jose-macoratti-2507156a/).
@@ -9,29 +9,29 @@ Small improvements have been made to both the frontend and backend.
 
 ## ER model
 
-![ER model](/Docs/Images/er.png)
+![ER model](Docs/Images/er.png)
 
 ## Application architecture diagram
 
-![Application architecture](/Docs/Images/application-architecture.png)
+![Application architecture](Docs/Images/application-architecture.png)
 
 ## Project organization in Visual Studio 2022 solution
 
-![Project organization](/Docs/Images/project-organization.png)
+![Project organization](Docs/Images/project-organization.png)
 
 ## Application images
 
 Home
 
-![Home](/Docs/Images/1-home.png)
+![Home](Docs/Images/1-home.png)
 
 Product Management
 
-![Product list](/Docs/Images/2-products-list.png)
+![Product list](Docs/Images/2-products-list.png)
 
-![Product new](/Docs/Images/3-products-new.png)
+![Product new](Docs/Images/3-products-new.png)
 
-![Product details](/Docs/Images/4-products-details.png)
+![Product details](Docs/Images/4-products-details.png)
 
 
 ## Additional improvements
